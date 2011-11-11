@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<script language="Javascript">
+
+var ScreenControl =
+  {
+	  interval: null,
+	  screenX: 0,
+		screenY: 0,
+		
+    moveTo: function(x,y,dur,type,termFunc)
+	    {
+			  try
+				  {
+					  this.stop();
+						
+						this.time = 0;
+						this.xStart = this.screenX;
+						this.yStart = this.screenY;
+						
+						this.xFinish = x || 0;
+						this.yFinish = y || 0;
+						this.duration = dur || 100;
+						this.type = type || "inout";
+						this.terminalFunction = termFunc || function() {;}
+						
+            this.xChange = this.xFinish - this.xStart;
+						this.yChange = this.yFinish - this.yStart;
+
+						this.setEasing(this.type);
+						
+						this.start();
+					}
+				catch(e) {;} 
+			},
+					
+    setEasing: function(ease)
+		  {
+			  this.type = ease;
+			  switch(this.type.toLowerCase())
+				  {
+					  case "in":
+					  this.step = function()
+						  {
+					      this.screenX = this.xChange*Math.pow(this.time/this.duration,3)+this.xStart;
+						    this.screenY = this.yChange*Math.pow(this.time/this.duration,3)+this.yStart;
+						  }
+            break;
+									
+  				  case "out":
+					  this.step = function()
+						  {
+					      this.screenX = this.xChange*(Math.pow(this.time/this.duration-1,3)+1)+this.xStart;
+						    this.screenY = this.yChange*(Math.pow(this.time/this.duration-1,3)+1)+this.yStart;
+						  }
+	          break;
+									
+					  case "inout":
+						  this.step = function()
+							  {
+								  time = this.time;
+						      this.screenX = ((time/=this.duration/2)<1)
+									                ? this.xChange/2 * Math.pow(time,3) + this.xStart
+																	: this.xChange/2 * (Math.pow(time-2,3)+2) + this.xStart;
+											
+									time = this.time;
+						      this.screenY = ((time/=this.duration/2)<1)
+									                ? this.yChange/2 * Math.pow(time,3) + this.yStart
+																	: this.yChange/2 * (Math.pow(time-2,3)+2) + this.yStart;
+							  }
+	          break;
+											
+						default:
+						break;
+			   }					
+			},
+		
+		stop: function()
+		  {
+			  clearInterval(this.interval);
+			},
+			
+		start: function()
+		  {
+			  this.interval = setInterval("ScreenControl.main()",1);
+			},
+					
+		main: function()
+		  {
+        this.step();
+				window.scrollTo(Math.round(this.screenX),Math.round(this.screenY));
+				++this.time;
+				if(this.time>this.duration)
+				  {
+					  this.stop();
+						this.terminalFunction();
+					}
+			}
+	}
+	
+</script>
+</head>
+<body onload="parent.register(this)"  style="background-color:transparent">
+
+<pre>
+
+The unseen truth
+by Allen Kitchen 
+December, 1998
+
+
+<<REPORT
+Title = crew of Longshot: Lanthide P001;
+-modifiers (by mate)
+-display (name : species/sex/skills)
+*
+Sorus: Raccoon/male/tech,sensors,nav
+Marissa: Ferret/female/helm,cook,comm.
+*
+Roget: rabbit/male/helm,nav,cook
+Pamis: fox/female/weapons,sensors,helm
+*
+Kobe: jaguar/male/weapons,helm,nav
+Mira: polar bear/female/tech,helm,nav
+*
+Lancelot: lemming/male/tech,helm,sensors
+Shanus: panda/female/tech,computers,cook
+*
+REPORT end>>
+
+	The starship LongShot sat in orbit about the planet Yannis, carefully 
+docked with the space station HighCanyon.  The ship sat on one side of the 
+giant cylinder's curved wall, her docking tube extended a mere 20 feet to 
+close the distance between the vessel and the station.  Keeping clamps and 
+cables snaked through the cold blackness of space, holding the LongShot and 
+preventing her from moving out of position. 
+	 They were currently on the dark side of orbit and sunrise wasn't for 
+another 10 minutes.  The red and green stationkeeping lights that ran along 
+HighCanyon's walls pulsed and strobed in the darkness as beacons for 
+approaching ships.  The foil-covered tubes and cables that provided fuel and 
+power shimmered faintly from the lights coming from the hundreds of 
+windows along the station's walls.  Here and there, other ships could be seen, 
+similarly docked.
+	But the docking tube holding the LongShot secure seemed different 
+than the others tonight.  For some reason, it seemed to be moving - rocking 
+back and forth over and over and over...
+***
+
+	Alkit raced out of his room before the door had even had a chance to 
+open completely.  Struggling to pull on his shirt and not crash headfirst into 
+something at the same time he felt his way along the wall as the ship's claxon 
+rang out the General Warning alarm.
+	He'd just gotten his muzzle through the neckline and was able to see 
+again, when Triva practically bowled him over running past him in the 
+narrow corridor.
+	"Oof!" he grunted, clutching the wall.  "Triva, watch where you are 
+going!  And what's with the alarm?"
+	"I'll give you two guesses Alkit!" she cried after him, rounding the 
+curve in the hall.  She was racing toward the docking hatch.
+	"Oh, drahn," Alkit fumed as he rushed off after his wolven mate.  
+"Not again!"
+	He had gone about 50 feet more when he reached Triva at the 
+hatchway to the docking tube.  He clutched the metal clasps around the open 
+pressure bulkhead, and looked out into the connection between the ship and 
+the station.
+	He saw Tess and Brand, playing a game of tag in the null-gee 
+environment of the docking raceway!
+	"Tess!" Alkit shouted.  "Brand!  What have we told you about playing 
+in the docking area?"
+	Brand, surprised, spun to look at his father.  But he misjudged his 
+rotational change and smashed headfirst into the wall with his head.  The thin 
+accordianed material flexed and bowed under the shock once again.  
+	Tess was older and a bit more experienced at this game.  So she just 
+grasped two of the nearest handholds to her, and anchored herself in place.  
+She was upside down compared to Alkit and Triva.
+	"You told us not to play in the docking tube because we get in the way 
+of traffic," she meekly answered.  "But there's no traffic right now, so we 
+aren't in the way."
+	"Your father and I told you not to play in the tube, period!" Triva 
+angrily spat.  "You and Brand get back on board the ship, this instant!"
+	"Aw, Ma..." Brand whined as he managed to get hold of a nearby grip 
+and regain control of his orientation.
+	"Don't talk back to your mother," Alkit said firmly.  "Both of you, 
+back to your rooms."
+	"We weren't hurting anything." Brand sulked as he pulled himself 
+hand over hand back toward his angry parents.  Tess swatted at him with her 
+tail.
+	"Brand, would you shut up?  Your gonna get us in trouble."
+	"Mom!  Make Tess get her tail out of my face!"
+	"Move it!" Triva fumed, grabbing for Tess as she came into reach and 
+swinging her to land feet first in the ship's gravity field.  "We've told you not 
+to play in the docking tube like that.  It's dangerous!"
+	"That's right," Alkit agreed, holding out a vulpine hand for Brand to 
+grasp.  "The raceway isn't as strong as the rest of the ship.  It can't handle 
+your bouncing back and forth on the walls.  They'll break.  And when they 
+break, you two will go flying out into space in an instant."
+	Brand reached out and gripped his father's hand.
+	"I'm sorry dad.  We didn't mean..."
+	"I know son, I know." Alkit sighed as he pulled Brand inside and 
+likewise swung the young wolf to stand erect.  "I know it's fun to play in 
+zero gravity.  But you can't play in the docking tube.  Ever.  I don't want 
+you, either of you, to go into it again unless your mother or I or one of the 
+rest of the crew are with you.  Understood?"
+	Both Tess and Brand stared at their feet and nodded their acceptance.
+	"Good," Triva sharply said as she gripped them both by their ears.  
+"Now, march!  Back to your rooms."  She began to walk with the two 
+youthful wolves down the curved hallway of the ship.  
+	She only managed a few steps before Shanus ran up to them.  She 
+appeared disheveled and her unzipped orange jumpsuit looked like she'd 
+slept in it.
+	"Alkit!  Triva!  The station-master just sent a message on the comm 
+system.  He demands to know what is wrong with our docking mechanism!"
+	Alkit turned to the wall, and pressed a few buttons on the small black 
+panel inset into the grey metal.  A second later, the ship's klaxon ceased, and 
+the hallway was once more quiet.  He turned to face the panda with a pained 
+look.
+	"Nothing is wrong that a good spanking won't fix, Shanus."
+	"Station-master Rannis said he was coming right over."
+	Triva rolled her eyes and growled in exasperation.  "Oh.  Terrific.  As 
+if things weren't bad enough."
+	"Yeah, I know," Alkit sighed.  "And Shanus?  If we are expecting 
+visitors, you might want to at least zip up."
+	Shanus looked down at her chest, cursed softly, and turned to the wall 
+away from everyone.
+	"Sorry people.  I... was busy when the alarm went off and took my 
+station at the bridge."
+	Triva chuckled, moving her hands from the kids ears and onto their 
+shoulders.
+	"Well, the cubs are sorry for disturbing your rest."  She then looked 
+down on them with a serious gleam in her eye and spoke to them in that 
+dreaded mother's tone that all children fear.  "Aren't you?"
+	Tess and Brand both nodded rapidly in response.
+	Shanus finished fixing her zipper, then turned around to face the group 
+once more.
+	"It's all right, Triva.  No harm done..."  She then glared at the two 
+young wolves and added, "this time."
+	"It had better be the last time, if a certain pair of pups knows what's 
+good for them."
+	"Shanus, do you think you can take Tess and Brand back to their 
+rooms as you head back to yours?" Alkit asked.
+	"Oh?  So I'm on rapscalian duty now?"
+	Triva chuckled and prodded her children to go with Shanus, who was 
+already holding out her hands to the two young cubs.  The pair sullenly 
+walked over to Shanus, and she put a hand behind their heads.
+	"No, Shanus.  But Alkit and I need to wait here for the station 
+manager.  Just make sure they get to their room as you walk by it.  Then you 
+and Lancelot can get back to...to..." Triva stopped, slightly embarrassed.  
+	Alkit came to her rescue a few seconds later.  "I believe you and 
+Lancelot were discussing some of the finer points of poetry?"
+	"Yeah, that's it Shanus.  You two can go back to your poetry reading."
+	"Uh huh," Shanus humorously called behind her.  "I'll be sure to tell 
+Lancelot that that's what we're doing.  He should get a kick out of that."
+	"Probably," Triva said, getting over her embarrassment.
+	"Only this time, try not to read so loud!" Alkit called after her as she 
+and the cubs walked down the curved hall and out of sight.  "That, or turn 
+some music on!"
+	"Oh, please." Triva winced.  "Anything but that music of hers."  Alkit 
+cocked an eyebrow at his pretty mate.  
+	"You don't care for her tastes in bands?" he asked her.
+	"I don't care for her tastes in tonal structure," she replied.  "I thought 
+only Avians listened to that microtonal stuff.  I mean, 32 notes per octave?  
+Don't you agree that's a bit extreme?"
+	Alkit smiled.  "I imagine the musical keyboard must be dozens of feet 
+long.  But taste is a matter of opinion."
+	"Well, some of their so-called chords hurt my ears and there's no 
+opinion about that."
+	"They don't hurt my hearing any."
+	"It's a wolf thing."
+	"Excuse me?" a voice suddenly called out from the docking tube.  
+Alkit, and Triva turned about to see who had boarded without their 
+knowledge or permission.
+	Standing there, just coming into the gravity field, was a tall, red-furred 
+vixen.  She was dressed in a simple yet elegant tan jacket with a skirt and 
+white shirt underneath.  She glided effortlessly from the zero gravity area to 
+land gently on her feet, clad in luxurious and expensive-looking shoes.  Her 
+red, bushy tail was tipped solid white and fell flat against her legs as null-gee 
+gave way to forces generated by the gravity plates of the ship.  
+	She was carrying a computerpad under her right arm, and Alkit 
+noticed the hyperlink antenna on the back of the unit.  That surprised him.  
+Such gear was very expensive and only wealthy executives who had to be in 
+constant contact at all times could afford them.  That, or station managers 
+who quite literally needed to have the universe at their fingertips.
+	She saw Alkit looking at her and rewarded him with a smile.
+	"Ah!  Captain Alkit.  Yes, this is the LongShot all right.  Permission to 
+come aboard?"
+	"Granted," Alkit said extending his hand politely to help her get 
+through the bulkhead doorway.  "Welcome aboard.  And I hope you won't 
+fine us for the incident with the docking tube."
+	She looked at Alkit puzzedly for a moment, flicking an ear.
+	"Why in the Void would I fine you?" she asked.
+	Alkit and Triva looked at each other for a few seconds before turning 
+their gazes back to their vulpine visitor.
+	"Ah!" the vixen exclaimed, her eyes opening wide.  "I get it!  You 
+think I'm from the station, and that I am coming here to yell at you about 
+your young ones misbehaving."  
+	"You mean you're not from the station?" Alkit asked.
+	"No," she answered, and began to confidently pry her way between the 
+fox and wolf, ignoring the outstretched hand and entering the hallway of the 
+ship.  "I don't have anything to do with HighCanyon.  I'm from the Spacer's 
+Guild."
+	"The Guild?" Alkit and Triva both said in surprise.  It had been a long 
+time since they had had a representative of the guild on board their ship.
+	The vixen nodded and kept walking.  "That's right.  I'm from the 
+office of psychological fitness.  I'm going to be hitching a ride with you back 
+to Vulcape and conducting a psychiatric evaluation on someone once we get 
+there."
+	Alkit scowled and jogged to catch up with her. Triva was following 
+close behind him.
+	"It is customary for the guild to ask before dead-heading someone 
+aboard a private ship," he pointed out with just a touch of annoyance. 
+	She turned about instantly, and withdrew some papers from some 
+unseen pocket.  She handed them to Alkit with little fanfare.
+	"This should take care of any and all objections, Captain Alkit," she 
+said assuredly.  "I believe you will find everything to be in order.  As for 
+accommodations, I can room just about anyplace you care to put me."  	
+	Alkit reached out, took the proffered papers, and began leafing through 
+them, one page at a time.  He was still pouring over the documents, clearly 
+emblazoned with the triple star seal of the spacer's guild, when the vixen 
+leaned forward toward him.
+	"I'll bet you have plenty of space in your quarters Alkit," she crooned.  
+"That is, if you don't mind sharing your bed with me." She finished her 
+sentence with a soft, inviting murr.
+	Alkit's head shot up, clearly surprised at the offer.  
+	Triva, showing remarkable self-control under the circumstances, only 
+bared her teeth a little bit.  "Excuse me," she growled,  "but in case you 
+didn't realize it, Alkit here is taken."
+	"Indeed he is!"  The vixen laughed and stuck her hand out, offering to 
+shake with Triva.  "Permit me to introduce myself.  I am Lisza Cyrelus."  
+	Alkit's jaw dropped when he heard her mention her name.  He could 
+only stand there dumbfounded as Triva cautiously accepted her outstretched 
+hand and shook.  Her wolfen eyes were locked on the vixen's and never 
+wavered.
+	"Hello.  I'm Triva.  I'm Co-Captain of this ship, and Alkit's..."
+	"Mate," Lisza interrupted.  "Yes, yes I know.  Well, I happen to be his 
+wife."
+
+</pre>
+
+<table width=100000 height=100000><tr><td></td></tr></table>
+
+</body>
+</html>
